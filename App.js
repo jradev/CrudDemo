@@ -7,16 +7,19 @@ import {
   Text,
   View,
 } from 'react-native';
+import { Dashboard } from '@/screens';
 
 
 
 const App = () => {
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{flex: 1}}>
       <StatusBar
         barStyle={'dark-content'}
       />
+
+      <Dashboard />
       
     </SafeAreaView>
   );
