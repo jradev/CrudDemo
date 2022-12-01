@@ -8,20 +8,17 @@ import {
   View,
 } from 'react-native';
 import { Dashboard } from '@/screens';
-
+import { AppNavigation } from '@/navigation';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
 
 
 const App = () => {
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <StatusBar
-        barStyle={'dark-content'}
-      />
-
-      <Dashboard />
-      
-    </SafeAreaView>
+    <NavigationContainer>
+        <AppNavigation />
+    </NavigationContainer>
   );
 };
 
