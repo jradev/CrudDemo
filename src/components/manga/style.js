@@ -9,7 +9,8 @@ const styles = StyleSheet.create({
         borderBottomColor: Colors.gray,
         borderBottomWidth: 1,
         paddingHorizontal: 10,
-        paddingTop: 6
+        paddingTop: 6,
+        paddingBottom: 4
     },
     title: {
         fontSize: 18,
@@ -46,6 +47,18 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: Colors.primary
+    },
+    comic: {
+        backgroundColor: Colors.gray,
+        borderRadius: 20,
+        alignSelf: 'flex-start',
+        paddingHorizontal: 5,
+        paddingVertical: 4,
+        marginTop: 5
+    },
+    comicText: {
+        fontSize: 12,
+        color: Colors.black
     }
 })
 

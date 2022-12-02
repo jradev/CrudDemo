@@ -25,6 +25,23 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: Colors.white
+    },
+    filter: {
+        alignSelf: 'flex-end',
+        backgroundColor: Colors.primary,
+        borderRadius: 4,
+        paddingVertical: 6,
+        paddingHorizontal: 10,
+        marginLeft: 10
+    },
+    listItem: {
+        alignSelf: 'flex-end',
+        flexDirection: 'row',
+    },
+    listHeader: {
+        width: '100%',
+        justifyContent: 'space-between',
+        paddingHorizontal: 10
     }
 })
 
