@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { FlatList, ScrollView, Text, TouchableOpacity, View } from "react-native";
-import { Container, Manga, EmptyManga } from "@/components";
+import { Container, Manga, EmptyManga, Selection } from "@/components";
 import styles from "./style";
 import { useNavigation } from "@react-navigation/native";
 import RNPickerSelect from 'react-native-picker-select';
@@ -45,34 +45,43 @@ export default function(props){
         navigation.push('CreateEditManga')
     }
 
+    const onClearFilter = () => {
+        setSortBy(null)
+        setFilter(null)
+    }
+
     const onChangeSort = (value) => {
         setSortBy(value)
+
     }
 
     const renderHeader = () => {
         return (
             <View style={styles.listHeader}>
+
                 <View style={styles.listItem}>
                 <View>
-                <RNPickerSelect
-                    ref={filterRef}
-                    style={{viewContainer : styles.filter, inputIOS: {fontSize: 16, color: Colors.white} }} 
-                    onValueChange={(value) => setFilter(value)}
-                    items={COMIC_TYPE}
-                    textInputProps={{color: Colors.white}}
-                    placeholder={{label: 'Filter', value: null}}
+                <Selection 
+                data={COMIC_TYPE}
+                label={'Filter'}
+                onValueChange={setFilter}
                 />
                 </View>
                 <View>
-                <RNPickerSelect
-                    ref={sortRef}
-                    style={{viewContainer : styles.filter, inputIOS: {fontSize: 16, color: Colors.white} }} 
-                    onValueChange={(value) => onChangeSort(value)}
-                    items={SORT_TYPE}
-                    textInputProps={{color: Colors.white}}
-                    placeholder={{label: 'Sort', value: null}}
+                <Selection 
+                value={sortBy}
+                data={SORT_TYPE}
+                label={'Sort'}
+                onValueChange={onChangeSort}
                 />
                 </View>
+                {
+                (sortBy || filter) ? 
+                <TouchableOpacity style={[styles.button, styles.clear]} onPress={onClearFilter}>
+                    <Text style={styles.clearText}>Clear</Text>
+                </TouchableOpacity>
+                : null
+                }
                 </View>
             </View>
         )
@@ -91,7 +100,7 @@ export default function(props){
                 <FlatList 
                 ListHeaderComponent={renderHeader}
                 keyExtractor={item => item.id}
-                data={comicList.filter((item) => filter ? item.type === filter : true).sort((a,b) => {
+                data={comicList?.filter((item) => filter ? item.type === filter : true).sort((a,b) => {
                     if(sortBy === 'title'){
                         return a?.title?.toLowerCase().localeCompare(b?.title?.toLowerCase())
                     }else if (sortBy === 'author'){

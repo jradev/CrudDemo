@@ -26,6 +26,17 @@ const styles = StyleSheet.create({
     buttonText: {
         color: Colors.white
     },
+    clear: {
+        backgroundColor: Colors.white,
+        borderColor: Colors.primary,
+        borderWidth: 1,
+        marginLeft: 12,
+        minWidth: 63,
+        alignItems: 'center'
+    },
+    clearText: {
+        color: Colors.primary
+    },
     filter: {
         alignSelf: 'flex-end',
         backgroundColor: Colors.primary,
